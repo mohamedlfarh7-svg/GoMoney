@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+      <nav>
+        <h1 id="logo">GoMoney</h1>
+        <div class="nav-links">
+          <button class="menu" onclick="menu.hidden^=1">☰</button>
+          <ul id="menu" hidden>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <section id="simulation">
+  <div class="simulation-content">
+    <h2>Simulation de Prêt</h2>
+    <form id="loanForm">
+      <label for="salary">Salaire Mensuel (MAD):</label>
+      <input type="number" id="salary" name="salary" required>
+
+      <label for="loanType">Type de Prêt:</label>
+      <select id="loanType" name="loanType" required>
+        <option value="">-- Choisissez un type --</option>
+        <option value="Personnel">Prêt Personnel</option>
+        <option value="Maison">Prêt Maison</option>
+        <option value="Appartement">Prêt Appartement</option>
+        <option value="Terrain">Terrain</option>
+        <option value="Petite entreprise">Petite entreprise</option>
+      </select>
+
+      <label for="loanAmount">Montant du Prêt (MAD):</label>
+      <input type="number" id="loanAmount" name="loanAmount" required>
+
+      <label for="loanTerm">Durée du Prêt (années):</label>
+      <input type="number" id="loanTerm" name="loanTerm" required>
+
+      <button type="submit">Calculer les Mensualités</button>
+    </form>
+  </div>
+</section>
+
+<div class="Return">
+  <button><a href="index.html">Retour Accueil</a></button>
+</div>
+
+<footer>
+  <p>© 2024 GoMoney. Tous droits réservés.</p>
+</footer>
+
+<script>
+  document.getElementById("loanForm").addEventListener("submit", function (event) {
+    event.preventDefault(); 
+
+    const salaire = parseFloat(document.getElementById('salary').value);
+    const typePret = document.getElementById('loanType').value;
+    const montantPret = parseFloat(document.getElementById('loanAmount').value);
+    const dureePret = parseFloat(document.getElementById('loanTerm').value);
+
+    let tauxInteret;
+
+    if (typePret === 'Personnel') tauxInteret = 0.09;
+    else if (typePret === 'Maison') tauxInteret = 0.04;
+    else if (typePret === 'Appartement') tauxInteret = 0.045;
+    else if (typePret === 'Terrain') tauxInteret = 0.055;
+    else if (typePret === 'Petite entreprise') tauxInteret = 0.07;
+    else return alert("Veuillez choisir un type de prêt valide.");
+
+    if (!(salaire) || !(montantPret) || !(dureePret)) {
+      alert("Veuillez remplir tous les champs correctement !");
+      return;
+    }
+
+    const mensualite = (montantPret * (tauxInteret / 12)) /
+      (1 - Math.pow(1 + tauxInteret / 12, -dureePret * 12));
+    let decision;
+      if (mensualite < salaire * 0.4) {
+        decision = "accepté";
+      } else {
+        decision = "refusé";
+      }
+
+    localStorage.setItem("typePret", typePret);
+    localStorage.setItem("dureePret", dureePret);
+    localStorage.setItem("tauxInteret", tauxInteret);
+    localStorage.setItem("mensualite", mensualite);
+    localStorage.setItem("decision", decision);
+    localStorage.setItem("salaire", salaire);
+
+    window.location.href = "result.html";
+  });
+</script>
+</body>
+</html>

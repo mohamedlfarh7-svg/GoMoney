@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    h2 {
+        text-align: center;
+        margin-top: 50px;
+        color: rgb(4, 56, 101);
+    }
+    .return {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #044069;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        min-width: 200px;
+    }
+    .return a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .return:hover {
+        background-color: #03314a;
+    }
+    #result {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      border: 2px solid #044069;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    p {
+      font-size: 1.1rem;
+      margin: 8px 0;
+    }
+
+    strong {
+      color: #1a73e8;
+    }
+    .btn {
+      display: block;
+      margin: 20px auto;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #155fc1;
+    }
+</style>
+<body>
+    <header>
+      <nav>
+        <h1 id="logo">GoMoney</h1>
+        <div class="nav-links">
+         <button class="menu" onclick="menu.hidden^=1">☰</button>
+          <ul id="menu" hidden>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="simulation.html">Simulation</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="buttons">
+    <h2>Résultat de votre simulation</h2>
+        <div id="result"></div>
+
+  <button class="btn" onclick="retour()"> Retour à la simulation</button>
+    <script >
+       const typePret = localStorage.getItem("typePret");
+    const dureePret = localStorage.getItem("dureePret");
+    const tauxInteret = parseFloat(localStorage.getItem("tauxInteret"));
+    const mensualite = parseFloat(localStorage.getItem("mensualite"));
+
+    document.getElementById("result").innerHTML = `
+      <p> Type de prêt : <strong>${typePret}</strong></p>
+      <p> Durée : <strong>${dureePret} ans</strong></p>
+      <p> Taux d’intérêt : <strong>${(tauxInteret * 100).toFixed(1)}%</strong></p>
+      <p> Mensualité estimée : <strong>${mensualite.toFixed(2)} DH/mois</strong></p>
+      <p> Décision : <strong>${localStorage.getItem("decision")}</strong></p>
+      <p> Salaire mensuel : <strong>${localStorage.getItem("salaire")} DH</strong></p>
+    `;
+
+    function retour() {
+      window.location.href = "simulation.html";
+    }
+    </script>
+    <footer>
+      <p>© 2024 GoMoney. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
