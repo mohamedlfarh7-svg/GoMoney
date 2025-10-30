@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .contacts {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 2px solid #044069;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .contacts h2 {
+        text-align: center;
+        color: #044069;
+    }
+    .contacts p {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333333;
+    }
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .contact-details label {
+        font-weight: bold;
+        color: #044069;
+    }
+    .contact-details input,
+    .contact-details textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    .contact-details textarea {
+        resize: vertical;
+        height: 100px;
+    }
+    .btns {
+        margin: 20px auto;
+        background-color: #044069;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    .btns:hover {
+        background-color: #03314a;
+    }
+</style>
+<body>
+    <header>
+        <nav>
+            <h1 id="logo">GoMoney</h1>
+            <div class="nav-links">
+            <button class="menu" onclick="menu.hidden^=1">☰</button>
+            <ul id="menu" hidden>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="simulation.html">Simulation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            </div>
+        </nav>
+        </header>
+        <div class="contacts">
+            <h2>Contactez-Nous</h2>
+            <p>Pour toute question ou assistance, n'hésitez pas à nous contacter :</p>
+            <div class="contact-details">
+                <label for="">email</label>
+                <input type="email" placeholder="votre email">
+                <label for="">message</label>
+                <textarea placeholder="votre message"></textarea>
+                <button class="btns">Envoyer</button>
+            </div>
+        </div>
+</body>
+</html>
