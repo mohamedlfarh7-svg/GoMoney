@@ -15,7 +15,7 @@
           <ul id="menu" hidden>
             <li><a href="index.html">Accueil</a></li>
             <li><a href="simulation.html">Simulation</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contct.html">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -23,7 +23,7 @@
     <section id="simulation">
   <div class="simulation-content">
     <h2>Simulation de Prêt</h2>
-    <form id="loanForm">
+    <form id="formLoan">
       <label for="salary">Salaire Mensuel (MAD):</label>
       <input type="number" id="salary" name="salary" required>
 
@@ -67,20 +67,15 @@
 
     let tauxInteret;
 
-    if (typePret === 'Personnel') tauxInteret = 0.09;
+    if (typePret === 'Personnel')
+       tauxInteret = 0.09;
     else if (typePret === 'Maison') tauxInteret = 0.04;
     else if (typePret === 'Appartement') tauxInteret = 0.045;
     else if (typePret === 'Terrain') tauxInteret = 0.055;
     else if (typePret === 'Petite entreprise') tauxInteret = 0.07;
     else return alert("Veuillez choisir un type de prêt valide.");
 
-    if (!(salaire) || !(montantPret) || !(dureePret)) {
-      alert("Veuillez remplir tous les champs correctement !");
-      return;
-    }
-
-    const mensualite = (montantPret * (tauxInteret / 12)) /
-      (1 - Math.pow(1 + tauxInteret / 12, -dureePret * 12));
+    const mensualite = (montantPret * (tauxInteret / 12)) / (1 - Math.pow(1 + tauxInteret / 12, -dureePret * 12));
     let decision;
       if (mensualite < salaire * 0.4) {
         decision = "accepté";
